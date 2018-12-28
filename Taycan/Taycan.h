@@ -16,4 +16,4 @@ FOUNDATION_EXPORT const unsigned char TaycanVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Taycan/PublicHeader.h>
 
-
+#include <Taycan/taycan_core.h>
