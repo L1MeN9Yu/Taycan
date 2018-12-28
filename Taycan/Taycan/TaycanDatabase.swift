@@ -17,6 +17,13 @@ public class TaycanDatabase {
         let rc = taycan_core_open_db(path.cString(using: .utf8), self.db)
         print("return code = \(rc)")
     }
+
+    deinit {
+        let rc = taycan_core_close(self.db.pointee)
+        print("return code = \(rc)")
+        self.db.pointee?.deallocate()
+        self.db.deallocate()
+    }
 }
 
 // MARK: - Store
@@ -115,5 +122,19 @@ extension TaycanDatabase {
 
         valuePointer.deallocate()
         return nil
+    }
+}
+
+// MARK: - Delete
+extension TaycanDatabase {
+    private func delete(key: Data) {
+        let encodeKeyPtr = key.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) in
+            return UnsafeRawPointer(pointer)
+        }
+
+        let encodeKeyLength = CUnsignedInt(key.count)
+
+        let rc = taycan_core_delete(self.db.pointee, encodeKeyPtr, encodeKeyLength)
+        print("return code = \(rc)")
     }
 }

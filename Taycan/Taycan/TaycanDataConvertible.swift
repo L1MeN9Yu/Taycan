@@ -46,6 +46,10 @@ extension UInt8: DataConvertible {
 }
 
 extension UInt16: DataConvertible {
+    public var data: Data {
+        var value = CFSwapInt16HostToBig(self)
+        return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
 }
 
 extension UInt: DataConvertible {

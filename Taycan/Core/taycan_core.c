@@ -22,7 +22,13 @@ int taycan_core_open_db(const char *path, void **db_ptr) {
     return rc;
 }
 
-int taycan_core_store(void *db_ptr, const void *key, unsigned int key_length, const void *value, unsigned long long value_length) {
+int
+taycan_core_store(
+        void *db_ptr,
+        const void *key,
+        unsigned int key_length,
+        const void *value,
+        unsigned long long value_length) {
     unqlite *db = db_ptr;
     int rc;
     rc = unqlite_kv_store(db, key, key_length, value, value_length);
@@ -34,7 +40,8 @@ int taycan_core_store(void *db_ptr, const void *key, unsigned int key_length, co
 }
 
 int
-taycan_core_fetch_sync(void *db_ptr,
+taycan_core_fetch_sync(
+        void *db_ptr,
         const void *key,
         unsigned int key_length,
         void **value_ptr,
@@ -57,6 +64,30 @@ taycan_core_fetch_sync(void *db_ptr,
 
     *value_ptr = value_buff;
     *value_length = (unsigned long long int) len;
+    return rc;
+}
+
+int
+taycan_core_delete(
+        void *db_ptr,
+        const void *key,
+        unsigned int key_length) {
+    unqlite *db = db_ptr;
+    int rc;
+    rc = unqlite_kv_delete(db, key, key_length);
+    if (rc != UNQLITE_OK) {
+        return rc;
+    }
+    rc = unqlite_commit(db);
+    return rc;
+}
+
+int taycan_core_close(
+        void *db_ptr
+) {
+    unqlite *db = db_ptr;
+    int rc;
+    rc = unqlite_close(db);
     return rc;
 }
 
