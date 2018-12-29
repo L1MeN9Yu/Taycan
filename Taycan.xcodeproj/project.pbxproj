@@ -21,10 +21,12 @@
 		B2D2A2DF597E202B21CE4916 /* TaycanEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A4EC5D9D05083D88702B /* TaycanEnvironment.swift */; };
 		B2D2A33580003E6B7D7207F0 /* taycan_log.c in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AE2ECC67A078C1D502A0 /* taycan_log.c */; };
 		B2D2A344EB075D2A42B66564 /* Horn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AC6C5D0A687B7EEA14F2 /* Horn.swift */; };
+		B2D2A3A4D83CDC253F574376 /* taycan_external.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D2A83D34E7C355FA33A329 /* taycan_external.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		B2D2A4015DC16A2BF178A548 /* DataConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A761E5EB85E4A1BFFFAA /* DataConvertible.swift */; };
+		B2D2A48B30D2FD2C25EECB3A /* taycan_external.c in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A48F75423D3045FCAC43 /* taycan_external.c */; };
 		B2D2A8DDF25F8A116753D693 /* Coder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A9EF3BED2B5CDEA96426 /* Coder.swift */; };
-		B2D2A91EB2889FE4BE1D88EE /* taycan_log.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D2A7C11FAAF733A97167BA /* taycan_log.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B2D2AA7B2D2E2459C107DC4F /* taycan_core.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D2AD723D60435CAD4941CB /* taycan_core.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D2A91EB2889FE4BE1D88EE /* taycan_log.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D2A7C11FAAF733A97167BA /* taycan_log.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		B2D2AA7B2D2E2459C107DC4F /* taycan_core.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D2AD723D60435CAD4941CB /* taycan_core.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		B2D2AFC2750ADF42306873D8 /* Taycan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2ADC2089C2034E625AA43 /* Taycan.swift */; };
 		B2D2AFEE169AD2BFFF0557BE /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AE1C61EF2A973CB8C65F /* Database.swift */; };
 /* End PBXBuildFile section */
@@ -67,9 +69,11 @@
 		108C38FF21D4F433000F93A1 /* unqlite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unqlite.c; sourceTree = "<group>"; };
 		108C390021D4F433000F93A1 /* unqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unqlite.h; sourceTree = "<group>"; };
 		B2D2A41C4808B2EC99A66460 /* taycan_core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = taycan_core.c; sourceTree = "<group>"; };
+		B2D2A48F75423D3045FCAC43 /* taycan_external.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = taycan_external.c; sourceTree = "<group>"; };
 		B2D2A4EC5D9D05083D88702B /* TaycanEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaycanEnvironment.swift; sourceTree = "<group>"; };
 		B2D2A761E5EB85E4A1BFFFAA /* DataConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConvertible.swift; sourceTree = "<group>"; };
 		B2D2A7C11FAAF733A97167BA /* taycan_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taycan_log.h; sourceTree = "<group>"; };
+		B2D2A83D34E7C355FA33A329 /* taycan_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taycan_external.h; sourceTree = "<group>"; };
 		B2D2A9EF3BED2B5CDEA96426 /* Coder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coder.swift; sourceTree = "<group>"; };
 		B2D2AC6C5D0A687B7EEA14F2 /* Horn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Horn.swift; sourceTree = "<group>"; };
 		B2D2AD723D60435CAD4941CB /* taycan_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taycan_core.h; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 			children = (
 				B2D2A3A9335CBAB570A3B7D9 /* log */,
 				B2D2A066FA2C477FEEF4CEA0 /* core */,
+				B2D2AC3CAA2FA1EE0618B188 /* external */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -189,6 +194,15 @@
 			path = log;
 			sourceTree = "<group>";
 		};
+		B2D2AC3CAA2FA1EE0618B188 /* external */ = {
+			isa = PBXGroup;
+			children = (
+				B2D2A83D34E7C355FA33A329 /* taycan_external.h */,
+				B2D2A48F75423D3045FCAC43 /* taycan_external.c */,
+			);
+			path = external;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -200,6 +214,7 @@
 				108C390221D4F433000F93A1 /* unqlite.h in Headers */,
 				B2D2A91EB2889FE4BE1D88EE /* taycan_log.h in Headers */,
 				B2D2AA7B2D2E2459C107DC4F /* taycan_core.h in Headers */,
+				B2D2A3A4D83CDC253F574376 /* taycan_external.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +338,7 @@
 				B2D2AFC2750ADF42306873D8 /* Taycan.swift in Sources */,
 				B2D2A33580003E6B7D7207F0 /* taycan_log.c in Sources */,
 				B2D2A144213B3C14D52AD1DD /* taycan_core.c in Sources */,
+				B2D2A48B30D2FD2C25EECB3A /* taycan_external.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

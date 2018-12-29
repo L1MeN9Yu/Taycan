@@ -16,6 +16,26 @@ extension Horn {
     }
 }
 
+// MARK: - C Bridge
+@_silgen_name("swift_log")
+func c_log(_ flag: UInt32,
+                   _ message: UnsafePointer<Int8>?,
+                   _ file_name: UnsafePointer<Int8>?,
+                   _ function: UnsafePointer<Int8>?,
+                   _ line: Int32) {
+    guard let c_message = message,
+          let message = String(cString: c_message, encoding: .utf8),
+          let type = HornType(flag: flag),
+          let c_file_name = file_name,
+          let filename = String(cString: c_file_name, encoding: .utf8),
+          let c_function_name = function,
+          let functionName = String(cString: c_function_name, encoding: .utf8) else {
+        return
+    }
+
+    Taycan.horn(message: message, hornType: type, filename: filename, function: functionName, line: Int(line))
+}
+
 public enum HornType {
     case trace
     case debug

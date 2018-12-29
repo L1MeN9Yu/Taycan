@@ -13,12 +13,12 @@ public class Database {
         assert(path.count > 0, "文件路径不能为空")
         let size = MemoryLayout<UnsafeRawPointer>.size
         self.db = UnsafeMutablePointer<UnsafeMutableRawPointer?>.allocate(capacity: size)
-        let rc = taycan_core_open_db(path.cString(using: .utf8), self.db)
+        let rc = c_taycan_database_open_db(path.cString(using: .utf8), self.db)
         horn(returnCode: rc)
     }
 
     deinit {
-        let rc = taycan_core_close(self.db.pointee)
+        let rc = c_taycan_database_close(self.db.pointee)
         horn(returnCode: rc)
         self.db.pointee?.deallocate()
         self.db.deallocate()
@@ -68,7 +68,7 @@ extension Database {
 
         let encodeValueLength = UInt64(value.count)
 
-        let rc = taycan_core_store(self.db.pointee, encodeKeyPtr, encodeKeyLength, encodeValuePtr, encodeValueLength)
+        let rc = c_taycan_database_store(self.db.pointee, encodeKeyPtr, encodeKeyLength, encodeValuePtr, encodeValueLength)
         horn(returnCode: rc)
     }
 }
@@ -110,7 +110,7 @@ extension Database {
         let valuePointer = UnsafeMutablePointer<UnsafeMutableRawPointer?>.allocate(capacity: size)
         var valueLength: UInt64 = 0
 
-        let rc = taycan_core_fetch_sync(self.db.pointee, encodeKeyPtr, encodeKeyLength, valuePointer, &valueLength)
+        let rc = c_taycan_database_fetch_sync(self.db.pointee, encodeKeyPtr, encodeKeyLength, valuePointer, &valueLength)
         horn(returnCode: rc)
         if let rawPointer = valuePointer.pointee {
             let data = Data(bytes: rawPointer, count: Int(valueLength))
@@ -133,7 +133,23 @@ extension Database {
 
         let encodeKeyLength = CUnsignedInt(key.count)
 
-        let rc = taycan_core_delete(self.db.pointee, encodeKeyPtr, encodeKeyLength)
+        let rc = c_taycan_database_delete(self.db.pointee, encodeKeyPtr, encodeKeyLength)
         horn(returnCode: rc)
     }
 }
+
+// MARK: - C Bridge
+@_silgen_name("taycan_database_open_db")
+public func c_taycan_database_open_db(_ path: UnsafePointer<Int8>?, _ db_ptr: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> Int32
+
+@_silgen_name("taycan_database_store")
+public func c_taycan_database_store(_ db_ptr: UnsafeMutableRawPointer?, _ key: UnsafeRawPointer?, _ key_length: UInt32, _ value: UnsafeRawPointer?, _ value_length: UInt64) -> Int32
+
+@_silgen_name("taycan_database_fetch_sync")
+public func c_taycan_database_fetch_sync(_ db_ptr: UnsafeMutableRawPointer?, _ key: UnsafeRawPointer?, _ key_length: UInt32, _ value_ptr: UnsafeMutablePointer<UnsafeMutableRawPointer?>?, _ value_length: UnsafeMutablePointer<UInt64>?) -> Int32
+
+@_silgen_name("taycan_database_delete")
+public func c_taycan_database_delete(_ db_ptr: UnsafeMutableRawPointer?, _ key: UnsafeRawPointer?, _ key_length: UInt32) -> Int32
+
+@_silgen_name("taycan_database_close")
+public func c_taycan_database_close(_ db_ptr: UnsafeMutableRawPointer?) -> Int32
