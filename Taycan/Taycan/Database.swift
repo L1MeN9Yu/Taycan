@@ -5,29 +5,28 @@
 
 import Foundation
 
-public class TaycanDatabase {
+public class Database {
 
     let db: UnsafeMutablePointer<UnsafeMutableRawPointer?>
 
-    public init(name: String) {
+    public init(path: String) {
+        assert(path.count > 0, "文件路径不能为空")
         let size = MemoryLayout<UnsafeRawPointer>.size
         self.db = UnsafeMutablePointer<UnsafeMutableRawPointer?>.allocate(capacity: size)
-        let path = NSTemporaryDirectory() + "\(name)"
-
         let rc = taycan_core_open_db(path.cString(using: .utf8), self.db)
-        print("return code = \(rc)")
+        horn(returnCode: rc)
     }
 
     deinit {
         let rc = taycan_core_close(self.db.pointee)
-        print("return code = \(rc)")
+        horn(returnCode: rc)
         self.db.pointee?.deallocate()
         self.db.deallocate()
     }
 }
 
 // MARK: - Store
-extension TaycanDatabase {
+extension Database {
     public func store<keyType: Encodable, ValueType: Encodable>(encodableKey: keyType, encodableValue: ValueType) {
         guard let encodeKey = try? TaycanCoder.encoder.encode(encodableKey),
               let encodeValue = try? TaycanCoder.encoder.encode(encodableValue) else {
@@ -70,12 +69,12 @@ extension TaycanDatabase {
         let encodeValueLength = UInt64(value.count)
 
         let rc = taycan_core_store(self.db.pointee, encodeKeyPtr, encodeKeyLength, encodeValuePtr, encodeValueLength)
-        print("return code = \(rc)")
+        horn(returnCode: rc)
     }
 }
 
 // MARK: - Fetch
-extension TaycanDatabase {
+extension Database {
     ///泛型返回,所以返回值必须指定类型,否则会编译失败
     public func fetchValue<KeyType: DataConvertible, ValueType: DataConvertible>(key: KeyType) -> ValueType? {
         let keyData = key.data
@@ -112,7 +111,7 @@ extension TaycanDatabase {
         var valueLength: UInt64 = 0
 
         let rc = taycan_core_fetch_sync(self.db.pointee, encodeKeyPtr, encodeKeyLength, valuePointer, &valueLength)
-        print("return code = \(rc)")
+        horn(returnCode: rc)
         if let rawPointer = valuePointer.pointee {
             let data = Data(bytes: rawPointer, count: Int(valueLength))
             rawPointer.deallocate()
@@ -126,7 +125,7 @@ extension TaycanDatabase {
 }
 
 // MARK: - Delete
-extension TaycanDatabase {
+extension Database {
     private func delete(key: Data) {
         let encodeKeyPtr = key.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) in
             return UnsafeRawPointer(pointer)
@@ -135,6 +134,6 @@ extension TaycanDatabase {
         let encodeKeyLength = CUnsignedInt(key.count)
 
         let rc = taycan_core_delete(self.db.pointee, encodeKeyPtr, encodeKeyLength)
-        print("return code = \(rc)")
+        horn(returnCode: rc)
     }
 }

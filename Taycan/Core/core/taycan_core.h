@@ -15,7 +15,7 @@
  * 打开或创建DB
  * @param path db的路径
  * @param db_ptr db的二级指针,外部自己持有
- * @return 0:成功
+ * @return ReturnCode - 0:成功
  */
 int taycan_core_open_db(
         const char *path,
@@ -50,5 +50,6 @@ taycan_core_delete(
 int taycan_core_close(
         void *db_ptr
 );
+
 
 #endif /* taycan_core_h */

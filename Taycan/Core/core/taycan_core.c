@@ -91,6 +91,7 @@ int taycan_core_close(
     return rc;
 }
 
+// static --- --- ---
 static int taycan_core_fetch_callback(const void *value, unsigned int length, void *p_user_data) {
 
     return UNQLITE_OK;

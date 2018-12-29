@@ -26,8 +26,11 @@ class ViewController: UIViewController {
         self.setupUI()
     }
 
-    private lazy var db = { () -> TaycanDatabase in
-        let db = TaycanDatabase(name: "a")
+    private lazy var db = { () -> Database in
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        let fileName = "taycan"
+        let path = (url?.path ?? "") + "/" + fileName
+        let db = Taycan.Database(path: path)
         return db
     }()
     private lazy var index = 0
