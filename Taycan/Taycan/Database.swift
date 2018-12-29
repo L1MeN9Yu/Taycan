@@ -126,6 +126,16 @@ extension Database {
 
 // MARK: - Delete
 extension Database {
+    public func delete<keyType: DataConvertible>(key: keyType) {
+        let keyData = key.data
+        self.delete(key: keyData)
+    }
+
+    public func delete<KeyType: Encodable>(encodableKey: KeyType) {
+        guard let encodeKey = try? TaycanCoder.encoder.encode(encodableKey) else { return }
+        self.delete(key: encodeKey)
+    }
+
     private func delete(key: Data) {
         let encodeKeyPtr = key.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) in
             return UnsafeRawPointer(pointer)
@@ -140,16 +150,16 @@ extension Database {
 
 // MARK: - C Bridge
 @_silgen_name("taycan_database_open_db")
-public func c_taycan_database_open_db(_ path: UnsafePointer<Int8>?, _ db_ptr: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> Int32
+private func c_taycan_database_open_db(_ path: UnsafePointer<Int8>?, _ db_ptr: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> Int32
 
 @_silgen_name("taycan_database_store")
-public func c_taycan_database_store(_ db_ptr: UnsafeMutableRawPointer?, _ key: UnsafeRawPointer?, _ key_length: UInt32, _ value: UnsafeRawPointer?, _ value_length: UInt64) -> Int32
+private func c_taycan_database_store(_ db_ptr: UnsafeMutableRawPointer?, _ key: UnsafeRawPointer?, _ key_length: UInt32, _ value: UnsafeRawPointer?, _ value_length: UInt64) -> Int32
 
 @_silgen_name("taycan_database_fetch_sync")
-public func c_taycan_database_fetch_sync(_ db_ptr: UnsafeMutableRawPointer?, _ key: UnsafeRawPointer?, _ key_length: UInt32, _ value_ptr: UnsafeMutablePointer<UnsafeMutableRawPointer?>?, _ value_length: UnsafeMutablePointer<UInt64>?) -> Int32
+private func c_taycan_database_fetch_sync(_ db_ptr: UnsafeMutableRawPointer?, _ key: UnsafeRawPointer?, _ key_length: UInt32, _ value_ptr: UnsafeMutablePointer<UnsafeMutableRawPointer?>?, _ value_length: UnsafeMutablePointer<UInt64>?) -> Int32
 
 @_silgen_name("taycan_database_delete")
-public func c_taycan_database_delete(_ db_ptr: UnsafeMutableRawPointer?, _ key: UnsafeRawPointer?, _ key_length: UInt32) -> Int32
+private func c_taycan_database_delete(_ db_ptr: UnsafeMutableRawPointer?, _ key: UnsafeRawPointer?, _ key_length: UInt32) -> Int32
 
 @_silgen_name("taycan_database_close")
-public func c_taycan_database_close(_ db_ptr: UnsafeMutableRawPointer?) -> Int32
+private func c_taycan_database_close(_ db_ptr: UnsafeMutableRawPointer?) -> Int32
