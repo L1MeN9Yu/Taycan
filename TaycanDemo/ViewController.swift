@@ -48,6 +48,9 @@ extension ViewController {
 
     @objc
     private func goAction() {
+        let a = self.db.fetchValue(key: "abc") ?? false
+        print("\(a)")
+        return
         switch self.index % 2 {
         case 0:
             self.db.store(key: "123", value: "abcdsaofaojfajfijfi;jsadfj;akf'dODKodjioajfoijoifjsoijgosajfjiosejfpa;sdka;dk🙏🙏🙏🙏🙏🙏🙏🙏")

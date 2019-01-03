@@ -114,7 +114,9 @@ extension Database {
         horn(returnCode: rc)
         if let rawPointer = valuePointer.pointee {
             let data = Data(bytes: rawPointer, count: Int(valueLength))
-            rawPointer.deallocate()
+            if data.count > 0 {
+                rawPointer.deallocate()
+            }
             valuePointer.deallocate()
             return data
         }

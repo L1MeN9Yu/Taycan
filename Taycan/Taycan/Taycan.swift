@@ -4,8 +4,16 @@
 //
 
 import Foundation
+import UIKit
 
 private var horn: Horn.Type?
+
+private let bundle = Bundle(identifier: "top.limengyu.Taycan")
+
+private let targetName = { () -> String in
+    let targetName = bundle?.object(forInfoDictionaryKey: "CFBundleName") as? String ?? ""
+    return "<" + targetName + ">"
+}()
 
 public func setup(horn: Horn.Type?) {
     Taycan.horn = horn
@@ -17,11 +25,11 @@ func horn(returnCode: Int32, filename: String = #file, function: String = #funct
     guard let message = String(cString: c_message, encoding: .utf8) else { return }
     let c_log_flat = c_taycan_log_flag_form_return_code(returnCode)
     guard let hornType = HornType(flag: c_log_flat) else { return }
-    Taycan.horn?.whistle(type: hornType, message: message, filename: filename, function: function, line: line)
+    Taycan.horn?.whistle(type: hornType, message: message + " " + targetName, filename: filename, function: function, line: line)
 }
 
 func horn(message: String, hornType: HornType, filename: String = #file, function: String = #function, line: Int = #line) {
-    Taycan.horn?.whistle(type: hornType, message: message, filename: filename, function: function, line: line)
+    Taycan.horn?.whistle(type: hornType, message: message + " " + targetName, filename: filename, function: function, line: line)
 }
 
 
