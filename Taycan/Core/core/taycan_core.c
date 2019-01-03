@@ -9,10 +9,13 @@
 #include "taycan_core.h"
 #include "unqlite.h"
 #include <stdlib.h>
-
-typedef unsigned int i;
+#include "taycan_log.h"
 
 static int taycan_core_fetch_callback(const void *value, unsigned int length, void *p_user_data);
+
+void taycan_core_init(void) {
+    taycan_core_log(taycan_log_flag_info, __FILE__, __PRETTY_FUNCTION__, __LINE__, "%s", UNQLITE_VERSION);
+}
 
 int taycan_core_open_db(const char *path, void **db_ptr) {
     unqlite *db;

@@ -25,6 +25,7 @@ taycan_init(
         void
 ) {
     config_log_callback(&taycan_log);
+    taycan_core_init();
 }
 
 unsigned int

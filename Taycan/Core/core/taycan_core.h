@@ -12,12 +12,18 @@
 #include <stdio.h>
 
 /**
+ * 初始化taycan
+ */
+void taycan_core_init(void);
+
+/**
  * 打开或创建DB
  * @param path db的路径
  * @param db_ptr db的二级指针,外部自己持有
  * @return ReturnCode - 0:成功
  */
-int taycan_core_open_db(
+int
+taycan_core_open_db(
         const char *path,
         void **db_ptr
 );
