@@ -10,8 +10,11 @@
 #define taycan_external_h
 
 #include <stdio.h>
+#include <stdbool.h>
 
-extern void swift_log(
+extern
+void
+swift_log(
         unsigned int flag,
         const char *message,
         const char *file_name,
@@ -38,6 +41,12 @@ extern
 const char *
 taycan_message_form_return_code(
         int return_code
+);
+
+extern
+bool
+taycan_unqlite_is_multi_thread_enable(
+        void
 );
 
 extern

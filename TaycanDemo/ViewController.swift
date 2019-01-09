@@ -48,8 +48,9 @@ extension ViewController {
 
     @objc
     private func goAction() {
-        let a = self.db.fetchValue(key: "abc") ?? false
-        print("\(a)")
+        let isMultiThreadEnable = self.db.isUnqliteMultiThreadEnable
+        print(isMultiThreadEnable)
+
         return
         switch self.index % 2 {
         case 0:

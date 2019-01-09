@@ -42,6 +42,13 @@ taycan_message_form_return_code(
     return taycan_core_message_form_return_code(return_code);
 }
 
+bool
+taycan_unqlite_is_multi_thread_enable(
+        void
+) {
+    return taycan_core_multi_thread_enable();
+}
+
 static
 void
 taycan_log(

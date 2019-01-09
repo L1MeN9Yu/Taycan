@@ -10,6 +10,7 @@
 #define taycan_core_h
 
 #include <stdio.h>
+#include <stdbool.h>
 
 /**
  * 初始化taycan
@@ -53,9 +54,14 @@ taycan_core_delete(
         unsigned int key_length
 );
 
-int taycan_core_close(
+int
+taycan_core_close(
         void *db_ptr
 );
 
+bool
+taycan_core_multi_thread_enable(
+        void
+);
 
 #endif /* taycan_core_h */

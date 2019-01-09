@@ -9,12 +9,15 @@ public class Database {
 
     let db: UnsafeMutablePointer<UnsafeMutableRawPointer?>
 
+    public private(set) var isUnqliteMultiThreadEnable: Bool = false
+
     public init(path: String) {
         assert(path.count > 0, "文件路径不能为空")
         let size = MemoryLayout<UnsafeRawPointer>.size
         self.db = UnsafeMutablePointer<UnsafeMutableRawPointer?>.allocate(capacity: size)
         let rc = c_taycan_database_open_db(path.cString(using: .utf8), self.db)
         horn(returnCode: rc)
+        self.isUnqliteMultiThreadEnable = c_taycan_unqlite_is_multi_thread_enable()
     }
 
     deinit {
@@ -165,3 +168,6 @@ private func c_taycan_database_delete(_ db_ptr: UnsafeMutableRawPointer?, _ key:
 
 @_silgen_name("taycan_database_close")
 private func c_taycan_database_close(_ db_ptr: UnsafeMutableRawPointer?) -> Int32
+
+@_silgen_name("taycan_unqlite_is_multi_thread_enable")
+private func c_taycan_unqlite_is_multi_thread_enable() -> Bool

@@ -15,6 +15,7 @@ static int taycan_core_fetch_callback(const void *value, unsigned int length, vo
 
 void taycan_core_init(void) {
     taycan_core_log(taycan_log_flag_info, __FILE__, __PRETTY_FUNCTION__, __LINE__, "%s", UNQLITE_VERSION);
+    unqlite_lib_config(UNQLITE_LIB_CONFIG_THREAD_LEVEL_MULTI);
 }
 
 int taycan_core_open_db(const char *path, void **db_ptr) {
@@ -92,6 +93,14 @@ int taycan_core_close(
     int rc;
     rc = unqlite_close(db);
     return rc;
+}
+
+bool
+taycan_core_multi_thread_enable(
+        void
+) {
+    int ret = unqlite_lib_is_threadsafe();
+    return ret == 1;
 }
 
 // static --- --- ---

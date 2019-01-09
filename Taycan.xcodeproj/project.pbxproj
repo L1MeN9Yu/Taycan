@@ -211,10 +211,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				108C38F821D4F2FA000F93A1 /* Taycan.h in Headers */,
-				108C390221D4F433000F93A1 /* unqlite.h in Headers */,
-				B2D2A91EB2889FE4BE1D88EE /* taycan_log.h in Headers */,
 				B2D2AA7B2D2E2459C107DC4F /* taycan_core.h in Headers */,
+				B2D2A91EB2889FE4BE1D88EE /* taycan_log.h in Headers */,
 				B2D2A3A4D83CDC253F574376 /* taycan_external.h in Headers */,
+				108C390221D4F433000F93A1 /* unqlite.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +552,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_CFLAGS = "-DUNQLITE_ENABLE_THREADS=1";
 				PRODUCT_BUNDLE_IDENTIFIER = top.limengyu.Taycan;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -578,6 +579,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_CFLAGS = "-DUNQLITE_ENABLE_THREADS=1";
 				PRODUCT_BUNDLE_IDENTIFIER = top.limengyu.Taycan;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
