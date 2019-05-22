@@ -8,12 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		10254A3422813F3B00EFDE82 /* Taycan.h in Headers */ = {isa = PBXBuildFile; fileRef = 10254A3222813F3B00EFDE82 /* Taycan.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D2A0B529F69598EE3E9FD3 /* taycan_core.c in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A4AA9C3389D5B3A97625 /* taycan_core.c */; };
+		B2D2A32F15605DE7D00DF954 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A1B0D853E3B14C7F8F6A /* Environment.swift */; };
+		B2D2A39C8B49403CFE7F132F /* Environment.Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A066A38498ABC0E9BDA3 /* Environment.Flags.swift */; };
+		B2D2A44357BE37728DDF91AA /* taycan_core_consts.c in Sources */ = {isa = PBXBuildFile; fileRef = B2D2ADFB3CE62D3E27F7FB5D /* taycan_core_consts.c */; };
+		B2D2A4647C7E5D20456351D5 /* DataConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A6C1E23D4C4BAEC04FB3 /* DataConvertible.swift */; };
+		B2D2A558DAAF39276CCF602C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A91793DE8DF7DE158BA9 /* Database.swift */; };
+		B2D2A5B04BACE47EEE8CA9E2 /* TaycanError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AE9221839DEFEC2E8544 /* TaycanError.swift */; };
+		B2D2A6499458105DB2E82022 /* taycan_core.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D2A103FF7812EF021561C7 /* taycan_core.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D2A72C64C01CEE8A98ED7A /* Database.Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AEAB6AA006AF44E06EA7 /* Database.Flags.swift */; };
+		B2D2A924DA3F85B941CFABBE /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AE018B532BD63E06DDE6 /* Transaction.swift */; };
+		B2D2ABB48FA63E14219456F8 /* Transaction.Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AB7313EABAC928512FF4 /* Transaction.Flags.swift */; };
+		B2D2ACAFB5256F0378628D8F /* Database.PutFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A6007A96B29D0B435D48 /* Database.PutFlags.swift */; };
+		B2D2AD730682490DD0213ECA /* taycan_core_consts.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D2AE957D85B21CD929D5DC /* taycan_core_consts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2D2AFFC75A77EF01F903CD7 /* Transaction.Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AD45405687C87A60A7B4 /* Transaction.Action.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		10254A2F22813F3B00EFDE82 /* Taycan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Taycan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10254A3222813F3B00EFDE82 /* Taycan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Taycan.h; sourceTree = "<group>"; };
 		10254A3322813F3B00EFDE82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2D2A066A38498ABC0E9BDA3 /* Environment.Flags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.Flags.swift; sourceTree = "<group>"; };
+		B2D2A103FF7812EF021561C7 /* taycan_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taycan_core.h; sourceTree = "<group>"; };
+		B2D2A1B0D853E3B14C7F8F6A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		B2D2A4AA9C3389D5B3A97625 /* taycan_core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = taycan_core.c; sourceTree = "<group>"; };
+		B2D2A6007A96B29D0B435D48 /* Database.PutFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.PutFlags.swift; sourceTree = "<group>"; };
+		B2D2A6C1E23D4C4BAEC04FB3 /* DataConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConvertible.swift; sourceTree = "<group>"; };
+		B2D2A91793DE8DF7DE158BA9 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		B2D2AB7313EABAC928512FF4 /* Transaction.Flags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.Flags.swift; sourceTree = "<group>"; };
+		B2D2AD45405687C87A60A7B4 /* Transaction.Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.Action.swift; sourceTree = "<group>"; };
+		B2D2ADFB3CE62D3E27F7FB5D /* taycan_core_consts.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = taycan_core_consts.c; sourceTree = "<group>"; };
+		B2D2AE018B532BD63E06DDE6 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		B2D2AE9221839DEFEC2E8544 /* TaycanError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaycanError.swift; sourceTree = "<group>"; };
+		B2D2AE957D85B21CD929D5DC /* taycan_core_consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taycan_core_consts.h; sourceTree = "<group>"; };
+		B2D2AEAB6AA006AF44E06EA7 /* Database.Flags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.Flags.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,16 +76,78 @@
 			children = (
 				10254A3222813F3B00EFDE82 /* Taycan.h */,
 				10254A3322813F3B00EFDE82 /* Info.plist */,
-				B2D2A0E86CE99B626AA0C278 /* Environment */,
+				B2D2ACB7E280324C601BC962 /* Core */,
+				B2D2A07BAE4172AC24278B5A /* Interface */,
 			);
 			path = Taycan;
 			sourceTree = "<group>";
 		};
-		B2D2A0E86CE99B626AA0C278 /* Environment */ = {
+		B2D2A07BAE4172AC24278B5A /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				B2D2A8D87CD46B6B945E7040 /* Environment */,
+				B2D2A9489ADCE61598143A22 /* Error */,
+				B2D2AC3EF236FD4F9D86851E /* DataConvertible */,
+				B2D2AC53DCB17A13EA70A003 /* Database */,
+				B2D2A2529AD5BF70677B853E /* Transaction */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		B2D2A2529AD5BF70677B853E /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				B2D2AE018B532BD63E06DDE6 /* Transaction.swift */,
+				B2D2AD45405687C87A60A7B4 /* Transaction.Action.swift */,
+				B2D2AB7313EABAC928512FF4 /* Transaction.Flags.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		B2D2A8D87CD46B6B945E7040 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				B2D2A066A38498ABC0E9BDA3 /* Environment.Flags.swift */,
+				B2D2A1B0D853E3B14C7F8F6A /* Environment.swift */,
 			);
 			path = Environment;
+			sourceTree = "<group>";
+		};
+		B2D2A9489ADCE61598143A22 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				B2D2AE9221839DEFEC2E8544 /* TaycanError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		B2D2AC3EF236FD4F9D86851E /* DataConvertible */ = {
+			isa = PBXGroup;
+			children = (
+				B2D2A6C1E23D4C4BAEC04FB3 /* DataConvertible.swift */,
+			);
+			path = DataConvertible;
+			sourceTree = "<group>";
+		};
+		B2D2AC53DCB17A13EA70A003 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				B2D2A91793DE8DF7DE158BA9 /* Database.swift */,
+				B2D2AEAB6AA006AF44E06EA7 /* Database.Flags.swift */,
+				B2D2A6007A96B29D0B435D48 /* Database.PutFlags.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		B2D2ACB7E280324C601BC962 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B2D2A103FF7812EF021561C7 /* taycan_core.h */,
+				B2D2A4AA9C3389D5B3A97625 /* taycan_core.c */,
+				B2D2AE957D85B21CD929D5DC /* taycan_core_consts.h */,
+				B2D2ADFB3CE62D3E27F7FB5D /* taycan_core_consts.c */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,6 +158,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				10254A3422813F3B00EFDE82 /* Taycan.h in Headers */,
+				B2D2A6499458105DB2E82022 /* taycan_core.h in Headers */,
+				B2D2AD730682490DD0213ECA /* taycan_core_consts.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +230,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2D2A0B529F69598EE3E9FD3 /* taycan_core.c in Sources */,
+				B2D2A44357BE37728DDF91AA /* taycan_core_consts.c in Sources */,
+				B2D2A39C8B49403CFE7F132F /* Environment.Flags.swift in Sources */,
+				B2D2A32F15605DE7D00DF954 /* Environment.swift in Sources */,
+				B2D2A5B04BACE47EEE8CA9E2 /* TaycanError.swift in Sources */,
+				B2D2A4647C7E5D20456351D5 /* DataConvertible.swift in Sources */,
+				B2D2A558DAAF39276CCF602C /* Database.swift in Sources */,
+				B2D2A72C64C01CEE8A98ED7A /* Database.Flags.swift in Sources */,
+				B2D2ACAFB5256F0378628D8F /* Database.PutFlags.swift in Sources */,
+				B2D2A924DA3F85B941CFABBE /* Transaction.swift in Sources */,
+				B2D2AFFC75A77EF01F903CD7 /* Transaction.Action.swift in Sources */,
+				B2D2ABB48FA63E14219456F8 /* Transaction.Flags.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

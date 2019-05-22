@@ -1,0 +1,5 @@
+[book]
+authors = ["L1MeN9Yu"]
+multilingual = false
+src = "src"
+title = "LMDB"
