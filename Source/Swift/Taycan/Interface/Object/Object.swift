@@ -5,7 +5,7 @@
 
 import Foundation
 
-class TaycanObject {
+class Object {
     let pointer: OpaquePointer?
 
     init(dataConvertible: DataConvertible) {

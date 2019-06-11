@@ -42,7 +42,7 @@ extension Database {
 //        let keyPointer = key.data.withUnsafeBytes { UnsafeMutableRawPointer(mutating: $0) }
 //        var keyObject = taycan_object(size: key.data.count, data: keyPointer)
 
-        let keyObject = TaycanObject(dataConvertible: key)
+        let keyObject = Object(dataConvertible: key)
 
         // The database will manage the memory for the returned value.
         // http://104.237.133.194/doc/group__mdb.html#ga8bf10cd91d3f3a83a34d04ce6b07992d
@@ -57,7 +57,7 @@ extension Database {
 
         guard getStatus != TAYCAN_NOTFOUND else { return nil }
 
-        let taycanObject = TaycanObject(pointer: dataVal)
+        let taycanObject = Object(pointer: dataVal)
 
         guard getStatus == 0, let data = taycanObject.data else { throw TaycanError(returnCode: getStatus) }
 
@@ -83,11 +83,11 @@ extension Database {
 //        let keyPointer = key.data.withUnsafeBytes { UnsafeMutableRawPointer(mutating: $0) }
 //        var keyObject = taycan_object(size: key.data.count, data: keyPointer)
 
-        let keyObject = TaycanObject(dataConvertible: key)
+        let keyObject = Object(dataConvertible: key)
 
 //        let valuePointer = value.data.withUnsafeBytes { UnsafeMutableRawPointer(mutating: $0) }
 //        var valueObject = taycan_object(size: value.data.count, data: valuePointer)
-        let valueObject = TaycanObject(dataConvertible: value)
+        let valueObject = Object(dataConvertible: value)
 
         var putStatus: Int32 = 0
 
@@ -107,7 +107,7 @@ extension Database {
 //        let keyPointer = key.data.withUnsafeBytes { UnsafeMutableRawPointer(mutating: $0) }
 //        var keyObject = taycan_object(size: key.data.count, data: keyPointer)
 
-        let keyObject = TaycanObject(dataConvertible: key)
+        let keyObject = Object(dataConvertible: key)
 
         try Transaction(environment: environment) { transaction -> Transaction.Action in
 

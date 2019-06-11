@@ -22,7 +22,7 @@
 		B2D2ABB48FA63E14219456F8 /* Transaction.Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AB7313EABAC928512FF4 /* Transaction.Flags.swift */; };
 		B2D2ACAFB5256F0378628D8F /* Database.PutFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A6007A96B29D0B435D48 /* Database.PutFlags.swift */; };
 		B2D2AD730682490DD0213ECA /* taycan_core_consts.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D2AE957D85B21CD929D5DC /* taycan_core_consts.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B2D2AF3D4FB77871FDCF94AD /* TaycanObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A2FB8C04430E9DE8A00E /* TaycanObject.swift */; };
+		B2D2AF3D4FB77871FDCF94AD /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A2FB8C04430E9DE8A00E /* Object.swift */; };
 		B2D2AFFC75A77EF01F903CD7 /* Transaction.Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AD45405687C87A60A7B4 /* Transaction.Action.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +34,7 @@
 		B2D2A066A38498ABC0E9BDA3 /* Environment.Flags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.Flags.swift; sourceTree = "<group>"; };
 		B2D2A103FF7812EF021561C7 /* taycan_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taycan_core.h; sourceTree = "<group>"; };
 		B2D2A1B0D853E3B14C7F8F6A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		B2D2A2FB8C04430E9DE8A00E /* TaycanObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaycanObject.swift; sourceTree = "<group>"; };
+		B2D2A2FB8C04430E9DE8A00E /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		B2D2A4AA9C3389D5B3A97625 /* taycan_core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = taycan_core.c; sourceTree = "<group>"; };
 		B2D2A6007A96B29D0B435D48 /* Database.PutFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.PutFlags.swift; sourceTree = "<group>"; };
 		B2D2A6C1E23D4C4BAEC04FB3 /* DataConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConvertible.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		B2D2AC358AE47193F1F6E256 /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				B2D2A2FB8C04430E9DE8A00E /* TaycanObject.swift */,
+				B2D2A2FB8C04430E9DE8A00E /* Object.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -266,7 +266,7 @@
 				B2D2A924DA3F85B941CFABBE /* Transaction.swift in Sources */,
 				B2D2AFFC75A77EF01F903CD7 /* Transaction.Action.swift in Sources */,
 				B2D2ABB48FA63E14219456F8 /* Transaction.Flags.swift in Sources */,
-				B2D2AF3D4FB77871FDCF94AD /* TaycanObject.swift in Sources */,
+				B2D2AF3D4FB77871FDCF94AD /* Object.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
