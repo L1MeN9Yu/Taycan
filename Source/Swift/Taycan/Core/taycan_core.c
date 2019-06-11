@@ -5,9 +5,36 @@
 //  Created by Mengyu Li on 2019-05-07.
 //  Copyright © 2019 L1MeN9Yu. All rights reserved.
 //
+#include <stdlib.h>
+
+#include <lmdb/lmdb.h>
+#include <string.h>
 
 #include "taycan_core.h"
-#include <lmdb/lmdb.h>
+
+// Taycan Object
+// Taycan Object
+struct taycan_object {
+    size_t size;
+    const void *data;
+};
+
+taycan_object_ref taycan_object_create(const void *data, size_t size) {
+    taycan_object_ref taycan_object = malloc(sizeof(taycan_object_ref));
+    return taycan_object;
+}
+
+void taycan_object_delete_pointer(taycan_object_ref taycan_object) {
+    free(taycan_object);
+}
+
+size_t taycan_object_pointer_size(taycan_object_ref taycan_object) {
+    return taycan_object->size;
+}
+
+const void *taycan_object_pointer_data(taycan_object_ref taycan_object) {
+    return taycan_object->data;
+}
 
 // environment
 
@@ -20,6 +47,52 @@ void taycan_database_close(const void *environment, taycan_database_id database_
 int taycan_database_open(const void *transaction, const char *name, unsigned int flags, taycan_database_id *database_id) {
     MDB_txn *mdb_transaction = (MDB_txn *) transaction;
     int result = mdb_dbi_open(mdb_transaction, name, flags, database_id);
+    return result;
+}
+
+int taycan_database_drop(const void *transaction, taycan_database_id database_id, int is_delete) {
+    MDB_txn *mdb_transaction = (MDB_txn *) transaction;
+    int result = mdb_drop(mdb_transaction, database_id, is_delete);
+    return result;
+}
+
+// Key Value
+
+int taycan_database_delete_value(const void *transaction, taycan_database_id database_id, taycan_object_ref key) {
+//    MDB_val *mdb_key = taycan_mdb_val_create_from(key);
+    MDB_val mdb_key;
+    mdb_key.mv_data = (void *) key->data;
+    mdb_key.mv_size = key->size;
+    MDB_txn *mdb_transaction = (MDB_txn *) transaction;
+    int result = mdb_del(mdb_transaction, database_id, &mdb_key, NULL);
+//    taycan_mdb_val_free(mdb_key);
+    return result;
+}
+
+int taycan_database_put_value(const void *transaction, taycan_database_id database_id, taycan_object_ref key, taycan_object_ref value, unsigned int flags) {
+//    MDB_val *mdb_key = taycan_mdb_val_create_from(key);
+//    MDB_val *mdb_value = taycan_mdb_val_create_from(value);
+    MDB_val mdb_key, mdb_value;
+    mdb_key.mv_data = (void *) key->data;
+    mdb_key.mv_size = key->size;
+    mdb_value.mv_data = (void *) value->data;
+    mdb_value.mv_size = value->size;
+    MDB_txn *mdb_transaction = (MDB_txn *) transaction;
+    int result = mdb_put(mdb_transaction, database_id, &mdb_key, &mdb_value, flags);
+//    taycan_mdb_val_free(mdb_key);
+//    taycan_mdb_val_free(mdb_value);
+    return result;
+}
+
+int taycan_database_get_value(const void *transaction, taycan_database_id database_id, taycan_object_ref key, taycan_object_ref *value) {
+//    MDB_val *mdb_key = taycan_mdb_val_create_from(key);
+    MDB_txn *mdb_transaction = (MDB_txn *) transaction;
+    MDB_val mdb_key, mdb_value;
+    mdb_key.mv_data = (void *) key->data;
+    mdb_key.mv_size = key->size;
+    int result = mdb_get(mdb_transaction, database_id, &mdb_key, &mdb_value);
+
+    *value = taycan_object_create(mdb_value.mv_data, mdb_value.mv_size);
     return result;
 }
 

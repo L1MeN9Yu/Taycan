@@ -16,7 +16,7 @@ public class Transaction {
     /// - parameter parent: Transactions can be nested to unlimited depth. (WARNING: Not yet tested)
     /// - parameter flags: A set containing flags modifying the behavior of the transaction.
     /// - parameter closure: The closure in which database interaction should occur. When the closure returns, the transaction is ended.
-    /// - throws: an error if operation fails. See `LMDBError`.
+    /// - throws: an error if operation fails. See `TaycanError`.
     @discardableResult
     init(environment: Environment, parent: Transaction? = nil, flags: Flags = [], closure: ((Transaction) throws -> Transaction.Action)) throws {
 
