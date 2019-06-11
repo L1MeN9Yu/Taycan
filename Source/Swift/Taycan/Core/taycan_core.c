@@ -12,6 +12,16 @@
 // environment
 
 // database
+void taycan_database_close(const void *environment, taycan_database_id database_id) {
+    MDB_env *mdb_environment = (MDB_env *) environment;
+    mdb_dbi_close(mdb_environment, database_id);
+}
+
+int taycan_database_open(const void *transaction, const char *name, unsigned int flags, taycan_database_id *database_id) {
+    MDB_txn *mdb_transaction = (MDB_txn *) transaction;
+    int result = mdb_dbi_open(mdb_transaction, name, flags, database_id);
+    return result;
+}
 
 // transaction
 int taycan_transaction_begin(const void *environment, const void *parent_transaction, unsigned int flags, void **transaction) {

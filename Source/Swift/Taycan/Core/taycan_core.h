@@ -15,6 +15,11 @@
 // environment
 
 // database
+typedef unsigned int taycan_database_id;
+
+void taycan_database_close(const void *environment, taycan_database_id database_id);
+
+int taycan_database_open(const void *transaction, const char *name, unsigned int flags, taycan_database_id *database_id);
 
 // transaction
 
