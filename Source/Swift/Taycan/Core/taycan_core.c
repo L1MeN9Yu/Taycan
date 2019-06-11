@@ -21,10 +21,14 @@ struct taycan_object {
 
 taycan_object_ref taycan_object_create(const void *data, size_t size) {
     taycan_object_ref taycan_object = malloc(sizeof(taycan_object_ref));
+    taycan_object->size = size;
+    taycan_object->data = malloc(size);
+    memcpy(taycan_object->data, data, size);
     return taycan_object;
 }
 
 void taycan_object_delete_pointer(taycan_object_ref taycan_object) {
+    free((void *) taycan_object->data);
     free(taycan_object);
 }
 
@@ -36,7 +40,42 @@ const void *taycan_object_pointer_data(taycan_object_ref taycan_object) {
     return taycan_object->data;
 }
 
-// environment
+// Environment
+int taycan_environment_create(void **environment) {
+    MDB_env *env;
+    int result = mdb_env_create(&env);
+    *environment = env;
+    return result;
+}
+
+int taycan_environment_open(const void *environment, const char *path, unsigned int flags, mode_t mode_type) {
+    MDB_env *mdb_environment = (MDB_env *) environment;
+    int result = mdb_env_open(mdb_environment, path, flags, mode_type);
+    return result;
+}
+
+int taycan_environment_set_map_size(const void *environment, size_t map_size) {
+    MDB_env *mdb_environment = (MDB_env *) environment;
+    int result = mdb_env_set_mapsize(mdb_environment, map_size);
+    return result;
+}
+
+int taycan_environment_set_max_readers(const void *environment, unsigned int max_readers) {
+    MDB_env *mdb_environment = (MDB_env *) environment;
+    int result = mdb_env_set_maxreaders(mdb_environment, max_readers);
+    return result;
+}
+
+int taycan_environment_set_max_databases(const void *environment, unsigned int max_databases) {
+    MDB_env *mdb_environment = (MDB_env *) environment;
+    int result = mdb_env_set_maxdbs(mdb_environment, max_databases);
+    return result;
+}
+
+void taycan_environment_close(const void *environment) {
+    MDB_env *mdb_environment = (MDB_env *) environment;
+    mdb_env_close(mdb_environment);
+}
 
 // database
 void taycan_database_close(const void *environment, taycan_database_id database_id) {
