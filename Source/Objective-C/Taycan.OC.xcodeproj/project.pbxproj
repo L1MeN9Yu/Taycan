@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		10254A5E22813FC000EFDE82 /* Taycan.h in Headers */ = {isa = PBXBuildFile; fileRef = 10254A5C22813FC000EFDE82 /* Taycan.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1070038622AF8D7100C9874A /* liblmdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1070038522AF8D7100C9874A /* liblmdb.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		10254A5922813FC000EFDE82 /* Taycan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Taycan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10254A5C22813FC000EFDE82 /* Taycan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Taycan.h; sourceTree = "<group>"; };
 		10254A5D22813FC000EFDE82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1070038522AF8D7100C9874A /* liblmdb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblmdb.a; path = ../ExternalLibrary/lmdb/library/liblmdb.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +23,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1070038622AF8D7100C9874A /* liblmdb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,6 +35,7 @@
 			children = (
 				10254A5B22813FC000EFDE82 /* Taycan */,
 				10254A5A22813FC000EFDE82 /* Products */,
+				1070038422AF8D7000C9874A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -50,6 +54,14 @@
 				10254A5D22813FC000EFDE82 /* Info.plist */,
 			);
 			path = Taycan;
+			sourceTree = "<group>";
+		};
+		1070038422AF8D7000C9874A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1070038522AF8D7100C9874A /* liblmdb.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

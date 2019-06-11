@@ -14,7 +14,7 @@
 // database
 
 // transaction
-int taycan_transaction_begin(void *environment, void *parent_transaction, unsigned int flags, void **transaction) {
+int taycan_transaction_begin(const void *environment, const void *parent_transaction, unsigned int flags, void **transaction) {
     MDB_env *mdb_environment = (MDB_env *) environment;
     MDB_txn *mdb_parent_transaction = (MDB_txn *) parent_transaction;
     MDB_txn *mdb_transaction;
@@ -23,13 +23,13 @@ int taycan_transaction_begin(void *environment, void *parent_transaction, unsign
     return result;
 }
 
-int taycan_transaction_commit(void *transaction) {
+int taycan_transaction_commit(const void *transaction) {
     MDB_txn *mdb_transaction = (MDB_txn *) transaction;
     int result = mdb_txn_commit(mdb_transaction);
     return result;
 }
 
-void taycan_transaction_abort(void *transaction) {
+void taycan_transaction_abort(const void *transaction) {
     MDB_txn *mdb_transaction = (MDB_txn *) transaction;
     mdb_txn_abort(mdb_transaction);
 }

@@ -7,7 +7,7 @@ import Foundation
 
 public class Transaction {
 
-    private(set) var handle: OpaquePointer?
+    private(set) var handle: UnsafeRawPointer?
 
     /// Creates a new instance of Transaction and runs the closure provided.
     /// Depending on the result returned from the closure, the transaction will either be comitted or aborted.
@@ -21,7 +21,9 @@ public class Transaction {
     init(environment: Environment, parent: Transaction? = nil, flags: Flags = [], closure: ((Transaction) throws -> Transaction.Action)) throws {
 
         // http://lmdb.tech/doc/group__mdb.html#gad7ea55da06b77513609efebd44b26920
-        let txnStatus = taycan_transaction_begin(environment.handle, parent?.handle, UInt32(flags.rawValue),&handle)
+        var internalHandler: UnsafeMutableRawPointer?
+        let txnStatus = taycan_transaction_begin(environment.handle, parent?.handle, UInt32(flags.rawValue), &internalHandler)
+        handle = UnsafeRawPointer(internalHandler)
 
         guard txnStatus == 0 else { throw TaycanError(returnCode: txnStatus) }
 

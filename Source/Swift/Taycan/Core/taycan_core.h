@@ -18,10 +18,10 @@
 
 // transaction
 
-int taycan_transaction_begin(void *environment, void *parent_transaction, unsigned int flags, void **transaction);
+int taycan_transaction_begin(const void *environment, const void *parent_transaction, unsigned int flags, void **transaction);
 
-int taycan_transaction_commit(void *transaction);
+int taycan_transaction_commit(const void *transaction);
 
-void taycan_transaction_abort(void *transaction);
+void taycan_transaction_abort(const void *transaction);
 
 #endif /* taycan_core_h */

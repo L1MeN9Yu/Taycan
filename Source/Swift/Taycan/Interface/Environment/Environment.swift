@@ -6,5 +6,5 @@
 import Foundation
 
 public class Environment {
-    private(set) var handle: OpaquePointer?
+    private(set) var handle: UnsafeRawPointer?
 }

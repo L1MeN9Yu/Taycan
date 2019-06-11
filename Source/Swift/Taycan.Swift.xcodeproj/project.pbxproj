@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10254A3422813F3B00EFDE82 /* Taycan.h in Headers */ = {isa = PBXBuildFile; fileRef = 10254A3222813F3B00EFDE82 /* Taycan.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1070038322AF8D6100C9874A /* liblmdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1070038222AF8D6100C9874A /* liblmdb.a */; };
 		B2D2A0B529F69598EE3E9FD3 /* taycan_core.c in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A4AA9C3389D5B3A97625 /* taycan_core.c */; };
 		B2D2A32F15605DE7D00DF954 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A1B0D853E3B14C7F8F6A /* Environment.swift */; };
 		B2D2A39C8B49403CFE7F132F /* Environment.Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A066A38498ABC0E9BDA3 /* Environment.Flags.swift */; };
@@ -28,6 +29,7 @@
 		10254A2F22813F3B00EFDE82 /* Taycan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Taycan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10254A3222813F3B00EFDE82 /* Taycan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Taycan.h; sourceTree = "<group>"; };
 		10254A3322813F3B00EFDE82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1070038222AF8D6100C9874A /* liblmdb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblmdb.a; path = ../ExternalLibrary/lmdb/library/liblmdb.a; sourceTree = "<group>"; };
 		B2D2A066A38498ABC0E9BDA3 /* Environment.Flags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.Flags.swift; sourceTree = "<group>"; };
 		B2D2A103FF7812EF021561C7 /* taycan_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taycan_core.h; sourceTree = "<group>"; };
 		B2D2A1B0D853E3B14C7F8F6A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1070038322AF8D6100C9874A /* liblmdb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +63,7 @@
 			children = (
 				10254A3122813F3B00EFDE82 /* Taycan */,
 				10254A3022813F3B00EFDE82 /* Products */,
+				1070038122AF8D6000C9874A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +84,14 @@
 				B2D2A07BAE4172AC24278B5A /* Interface */,
 			);
 			path = Taycan;
+			sourceTree = "<group>";
+		};
+		1070038122AF8D6000C9874A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1070038222AF8D6100C9874A /* liblmdb.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B2D2A07BAE4172AC24278B5A /* Interface */ = {
