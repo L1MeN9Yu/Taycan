@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		10254A3422813F3B00EFDE82 /* Taycan.h in Headers */ = {isa = PBXBuildFile; fileRef = 10254A3222813F3B00EFDE82 /* Taycan.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1070038322AF8D6100C9874A /* liblmdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1070038222AF8D6100C9874A /* liblmdb.a */; };
+		107F53A422AFDF5800249095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107F53A322AFDF5800249095 /* AppDelegate.swift */; };
+		107F53A622AFDF5800249095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107F53A522AFDF5800249095 /* ViewController.swift */; };
+		107F53A922AFDF5800249095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 107F53A722AFDF5800249095 /* Main.storyboard */; };
+		107F53AB22AFDF5800249095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 107F53AA22AFDF5800249095 /* Assets.xcassets */; };
+		107F53AE22AFDF5800249095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 107F53AC22AFDF5800249095 /* LaunchScreen.storyboard */; };
+		107F53B322AFDF6900249095 /* Taycan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10254A2F22813F3B00EFDE82 /* Taycan.framework */; };
+		107F53B422AFDF6900249095 /* Taycan.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 10254A2F22813F3B00EFDE82 /* Taycan.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2D2A0B529F69598EE3E9FD3 /* taycan_core.c in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A4AA9C3389D5B3A97625 /* taycan_core.c */; };
 		B2D2A32F15605DE7D00DF954 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A1B0D853E3B14C7F8F6A /* Environment.swift */; };
 		B2D2A39C8B49403CFE7F132F /* Environment.Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A066A38498ABC0E9BDA3 /* Environment.Flags.swift */; };
@@ -26,11 +33,42 @@
 		B2D2AFFC75A77EF01F903CD7 /* Transaction.Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AD45405687C87A60A7B4 /* Transaction.Action.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		107F53B522AFDF6900249095 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10254A2622813F3B00EFDE82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 10254A2E22813F3B00EFDE82;
+			remoteInfo = Taycan;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		107F53B722AFDF6900249095 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				107F53B422AFDF6900249095 /* Taycan.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		10254A2F22813F3B00EFDE82 /* Taycan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Taycan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10254A3222813F3B00EFDE82 /* Taycan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Taycan.h; sourceTree = "<group>"; };
 		10254A3322813F3B00EFDE82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1070038222AF8D6100C9874A /* liblmdb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblmdb.a; path = ../ExternalLibrary/lmdb/library/liblmdb.a; sourceTree = "<group>"; };
+		107F53A122AFDF5800249095 /* TaycanDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaycanDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		107F53A322AFDF5800249095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		107F53A522AFDF5800249095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		107F53A822AFDF5800249095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		107F53AA22AFDF5800249095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		107F53AD22AFDF5800249095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		107F53AF22AFDF5800249095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2D2A066A38498ABC0E9BDA3 /* Environment.Flags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.Flags.swift; sourceTree = "<group>"; };
 		B2D2A103FF7812EF021561C7 /* taycan_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taycan_core.h; sourceTree = "<group>"; };
 		B2D2A1B0D853E3B14C7F8F6A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -57,6 +95,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		107F539E22AFDF5800249095 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				107F53B322AFDF6900249095 /* Taycan.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -64,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				10254A3122813F3B00EFDE82 /* Taycan */,
+				107F53A222AFDF5800249095 /* TaycanDemo */,
 				10254A3022813F3B00EFDE82 /* Products */,
 				1070038122AF8D6000C9874A /* Frameworks */,
 			);
@@ -73,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				10254A2F22813F3B00EFDE82 /* Taycan.framework */,
+				107F53A122AFDF5800249095 /* TaycanDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +142,19 @@
 				1070038222AF8D6100C9874A /* liblmdb.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		107F53A222AFDF5800249095 /* TaycanDemo */ = {
+			isa = PBXGroup;
+			children = (
+				107F53A322AFDF5800249095 /* AppDelegate.swift */,
+				107F53A522AFDF5800249095 /* ViewController.swift */,
+				107F53A722AFDF5800249095 /* Main.storyboard */,
+				107F53AA22AFDF5800249095 /* Assets.xcassets */,
+				107F53AC22AFDF5800249095 /* LaunchScreen.storyboard */,
+				107F53AF22AFDF5800249095 /* Info.plist */,
+			);
+			path = TaycanDemo;
 			sourceTree = "<group>";
 		};
 		B2D2A07BAE4172AC24278B5A /* Interface */ = {
@@ -207,16 +268,39 @@
 			productReference = 10254A2F22813F3B00EFDE82 /* Taycan.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		107F53A022AFDF5800249095 /* TaycanDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 107F53B022AFDF5800249095 /* Build configuration list for PBXNativeTarget "TaycanDemo" */;
+			buildPhases = (
+				107F539D22AFDF5800249095 /* Sources */,
+				107F539E22AFDF5800249095 /* Frameworks */,
+				107F539F22AFDF5800249095 /* Resources */,
+				107F53B722AFDF6900249095 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				107F53B622AFDF6900249095 /* PBXTargetDependency */,
+			);
+			name = TaycanDemo;
+			productName = TaycanDemo;
+			productReference = 107F53A122AFDF5800249095 /* TaycanDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		10254A2622813F3B00EFDE82 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = L1MeN9Yu;
 				TargetAttributes = {
 					10254A2E22813F3B00EFDE82 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					107F53A022AFDF5800249095 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
 				};
@@ -235,6 +319,7 @@
 			projectRoot = "";
 			targets = (
 				10254A2E22813F3B00EFDE82 /* Taycan */,
+				107F53A022AFDF5800249095 /* TaycanDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -244,6 +329,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		107F539F22AFDF5800249095 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				107F53AE22AFDF5800249095 /* LaunchScreen.storyboard in Resources */,
+				107F53AB22AFDF5800249095 /* Assets.xcassets in Resources */,
+				107F53A922AFDF5800249095 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,7 +365,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		107F539D22AFDF5800249095 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				107F53A622AFDF5800249095 /* ViewController.swift in Sources */,
+				107F53A422AFDF5800249095 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		107F53B622AFDF6900249095 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 10254A2E22813F3B00EFDE82 /* Taycan */;
+			targetProxy = 107F53B522AFDF6900249095 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		107F53A722AFDF5800249095 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				107F53A822AFDF5800249095 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		107F53AC22AFDF5800249095 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				107F53AD22AFDF5800249095 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		10254A3522813F3B00EFDE82 /* Debug */ = {
@@ -451,6 +582,46 @@
 			};
 			name = Release;
 		};
+		107F53B122AFDF5800249095 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HMEN575QY4;
+				INFOPLIST_FILE = TaycanDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = top.limengyu.taycan.swift.TaycanDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		107F53B222AFDF5800249095 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HMEN575QY4;
+				INFOPLIST_FILE = TaycanDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = top.limengyu.taycan.swift.TaycanDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -468,6 +639,15 @@
 			buildConfigurations = (
 				10254A3822813F3B00EFDE82 /* Debug */,
 				10254A3922813F3B00EFDE82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		107F53B022AFDF5800249095 /* Build configuration list for PBXNativeTarget "TaycanDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				107F53B122AFDF5800249095 /* Debug */,
+				107F53B222AFDF5800249095 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
