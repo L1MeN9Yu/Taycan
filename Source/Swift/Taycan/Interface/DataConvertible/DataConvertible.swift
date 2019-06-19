@@ -13,44 +13,22 @@ public protocol DataConvertible {
     var data: Data { get }
 }
 
-extension DataConvertible where Self: ExpressibleByIntegerLiteral {
-
-    public init?(data: Data) {
-        var value: Self = 0
-        guard data.count == MemoryLayout.size(ofValue: value) else { return nil }
-        _ = withUnsafeMutableBytes(of: &value, { data.copyBytes(to: $0) })
-        self = value
-    }
-
-    public var data: Data {
-        return withUnsafeBytes(of: self) { Data($0) }
-    }
-}
-
 extension Data: DataConvertible {
-    public init?(data: Data) {
-        self = data
-    }
+    public init?(data: Data) { self = data }
 
-    public var data: Data {
-        return self
-    }
+    public var data: Data { return self }
 }
 
 extension String: DataConvertible {
-    public init?(data: Data) {
-        self.init(data: data, encoding: .utf8)
-    }
+    public init?(data: Data) { self.init(data: data, encoding: .utf8) }
 
-    public var data: Data {
-        return self.data(using: .utf8)!
-    }
+    public var data: Data { return self.data(using: .utf8)! }
 }
 
 extension Bool: DataConvertible {
     public init?(data: Data) {
         guard data.count == MemoryLayout<UInt8>.size else { return nil }
-        self = data.withUnsafeBytes { $0.load(as: UInt8.self) } != 0
+        self = data.withUnsafeBytes { $0.pointee } != 0
     }
 
     public var data: Data {
@@ -59,51 +37,162 @@ extension Bool: DataConvertible {
     }
 }
 
-extension Date: DataConvertible {
+extension Int: DataConvertible {
     public init?(data: Data) {
-        guard let timeInterval = TimeInterval(data: data) else {
-            return nil
-        }
-        self = Date(timeIntervalSinceReferenceDate: timeInterval)
+        guard data.count == MemoryLayout<Int>.size else { return nil }
+        let bigEndian: Int = data.withUnsafeBytes { $0.pointee }
+        self = Int(bigEndian: bigEndian)
     }
 
     public var data: Data {
-        return self.timeIntervalSinceReferenceDate.data
+        var bigEndian = self.bigEndian
+        return Data(buffer: UnsafeBufferPointer(start: &bigEndian, count: 1))
     }
 }
 
-extension Int: DataConvertible {
-}
-
-extension Float: DataConvertible {
-}
-
-extension Double: DataConvertible {
-}
-
 extension UInt: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<UInt>.size else { return nil }
+        self = UInt(bigEndian: data.withUnsafeBytes { $0.pointee })
+    }
+
+    public var data: Data {
+        var value = self.bigEndian
+        return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
 }
 
 extension Int8: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<Int8>.size else { return nil }
+        self = data.withUnsafeBytes { $0.pointee }
+    }
+
+    public var data: Data {
+        var value = self
+        return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
 }
 
 extension UInt8: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<UInt8>.size else { return nil }
+        self = data.withUnsafeBytes { $0.pointee }
+    }
+
+    public var data: Data {
+        var value = self
+        return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
 }
 
 extension Int16: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<Int16>.size else { return nil }
+        self = Int16(bigEndian: data.withUnsafeBytes { $0.pointee })
+    }
+
+    public var data: Data {
+        var value = self.bigEndian
+        return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
 }
 
 extension UInt16: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<UInt16>.size else { return nil }
+        self = UInt16(bigEndian: data.withUnsafeBytes { $0.pointee })
+    }
+
+    public var data: Data {
+        var value = self.bigEndian
+        return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
 }
 
 extension Int32: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<Int32>.size else { return nil }
+        self = Int32(bigEndian: data.withUnsafeBytes { $0.pointee })
+    }
+
+    public var data: Data {
+        var value = self.bigEndian
+        return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
 }
 
 extension UInt32: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<UInt32>.size else { return nil }
+        self = UInt32(bigEndian: data.withUnsafeBytes { $0.pointee })
+    }
+
+    public var data: Data {
+        var value = self.bigEndian
+        return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
 }
 
 extension Int64: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<Int64>.size else { return nil }
+        self = Int64(bigEndian: data.withUnsafeBytes { $0.pointee })
+    }
+
+    public var data: Data {
+        var value = self.bigEndian
+        return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
 }
 
 extension UInt64: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<UInt64>.size else { return nil }
+        self = UInt64(bigEndian: data.withUnsafeBytes { $0.pointee })
+    }
+
+    public var data: Data {
+        var value = self.bigEndian
+        return Data(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
+}
+
+extension Float: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<UInt32>.size else { return nil }
+        let bigEndian: UInt32 = data.withUnsafeBytes { $0.pointee }
+        let bitPattern = UInt32(bigEndian: bigEndian)
+        self = Float(bitPattern: bitPattern)
+    }
+
+    public var data: Data {
+        let bitPattern: UInt32 = self.bitPattern
+        var bigEndian = bitPattern.bigEndian
+        return Data(buffer: UnsafeBufferPointer(start: &bigEndian, count: 1))
+    }
+}
+
+extension Double: DataConvertible {
+    public init?(data: Data) {
+        guard data.count == MemoryLayout<UInt64>.size else { return nil }
+        let bigEndian: UInt64 = data.withUnsafeBytes { $0.pointee }
+        let bitPattern = UInt64(bigEndian: bigEndian)
+        self = Double(bitPattern: bitPattern)
+    }
+
+    public var data: Data {
+        let bitPattern: UInt64 = self.bitPattern
+        var bigEndian = bitPattern.bigEndian
+        return Data(buffer: UnsafeBufferPointer(start: &bigEndian, count: 1))
+    }
+}
+
+extension Date: DataConvertible {
+    public init?(data: Data) {
+        guard let timeInterval = TimeInterval(data: data) else { return nil }
+        self = Date(timeIntervalSinceReferenceDate: timeInterval)
+    }
+
+    public var data: Data { return self.timeIntervalSinceReferenceDate.data }
 }

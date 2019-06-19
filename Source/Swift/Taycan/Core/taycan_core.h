@@ -12,17 +12,6 @@
 
 #include <stdio.h>
 
-// Taycan Object
-typedef struct taycan_object *taycan_object_ref;
-
-taycan_object_ref taycan_object_create(const void *data, size_t size);
-
-void taycan_object_delete_pointer(taycan_object_ref taycan_object);
-
-size_t taycan_object_pointer_size(taycan_object_ref taycan_object);
-
-const void *taycan_object_pointer_data(taycan_object_ref taycan_object);
-
 // Environment
 int taycan_environment_create(void **environment);
 
@@ -46,11 +35,11 @@ int taycan_database_open(const void *transaction, const char *name, unsigned int
 int taycan_database_drop(const void *transaction, taycan_database_id database_id, int is_delete);
 
 // Key Value
-int taycan_database_delete_value(const void *transaction, taycan_database_id database_id, taycan_object_ref key);
+int taycan_database_delete_value(const void *transaction, taycan_database_id database_id, const void *key, size_t key_size);
 
-int taycan_database_put_value(const void *transaction, taycan_database_id database_id, taycan_object_ref key, taycan_object_ref value, unsigned int flags);
+int taycan_database_put_value(const void *transaction, taycan_database_id database_id, const void *key, size_t key_size, const void *value, size_t value_size, unsigned int flags);
 
-int taycan_database_get_value(const void *transaction, taycan_database_id database_id, taycan_object_ref key, taycan_object_ref *value);
+int taycan_database_get_value(const void *transaction, taycan_database_id database_id, const void *key, size_t key_size, void **value, size_t *value_size);
 
 // Transaction
 

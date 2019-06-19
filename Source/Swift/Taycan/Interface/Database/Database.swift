@@ -7,7 +7,9 @@ import Foundation
 
 // MARK: - Database
 public class Database {
+    ///Database关联的environment
     private let environment: Environment
+    ///Database的ID
     private var id: UInt32 = 0
 
     init(environment: Environment, name: String?, flags: Flags = []) throws {
@@ -16,15 +18,12 @@ public class Database {
         try Transaction(environment: self.environment) { transaction -> Transaction.Action in
             let openStatus = taycan_database_open(transaction.handle, name?.cString(using: .utf8), UInt32(flags.rawValue), &id)
             guard openStatus == 0 else { throw TaycanError(returnCode: openStatus) }
-
-            // Commit the open transaction.
             return .commit
         }
     }
 
     deinit {
-        // Close the database.
-        // http://lmdb.tech/doc/group__mdb.html#ga52dd98d0c542378370cd6b712ff961b5
+        //关闭Database
         taycan_database_close(self.environment.handle, self.id)
     }
 }
@@ -39,30 +38,32 @@ extension Database {
     /// - throws: an error if operation fails. See `TaycanError`.
     public func get<V: DataConvertible, K: DataConvertible>(type: V.Type, forKey key: K) throws -> V? {
 
-//        let keyPointer = key.data.withUnsafeBytes { UnsafeMutableRawPointer(mutating: $0) }
-//        var keyObject = taycan_object(size: key.data.count, data: keyPointer)
-
-        let keyObject = Object(dataConvertible: key)
-
-        // The database will manage the memory for the returned value.
-        // http://104.237.133.194/doc/group__mdb.html#ga8bf10cd91d3f3a83a34d04ce6b07992d
-        var dataVal: OpaquePointer?
-
         var getStatus: Int32 = 0
+        var resultData: Data?
 
-        try Transaction(environment: environment, flags: .readOnly) { transaction -> Transaction.Action in
-            getStatus = taycan_database_get_value(transaction.handle, id, keyObject.pointer, &dataVal)
-            return .commit
+        try key.data.withUnsafePointer { pointer -> UnsafeRawPointer in
+            let keyPointer = UnsafeRawPointer(pointer)
+
+            var valuePointer: UnsafeMutableRawPointer?
+            var valueSize: Int = 0
+
+            try Transaction(environment: environment, flags: .readOnly) { transaction -> Transaction.Action in
+                getStatus = taycan_database_get_value(transaction.handle, id, keyPointer, key.data.count, &valuePointer, &valueSize)
+                return .commit
+            }
+
+            guard getStatus == 0, let data = valuePointer else { throw TaycanError(returnCode: getStatus) }
+
+            resultData = Data(bytes: data, count: valueSize)
+
+            return keyPointer
         }
 
         guard getStatus != TAYCAN_NOTFOUND else { return nil }
 
-        let taycanObject = Object(pointer: dataVal)
+        guard let data = resultData else { return nil }
 
-        guard getStatus == 0, let data = taycanObject.data else { throw TaycanError(returnCode: getStatus) }
-
-        let resultData = Data(bytes: data, count: taycanObject.size)
-        return V(data: resultData)
+        return V(data: data)
     }
 
     /// Check if a value exists for the given key.
@@ -80,20 +81,21 @@ extension Database {
     /// - throws: an error if operation fails. See `TaycanError`.
     public func put<V: DataConvertible, K: DataConvertible>(value: V, forKey key: K, flags: PutFlags = []) throws {
 
-//        let keyPointer = key.data.withUnsafeBytes { UnsafeMutableRawPointer(mutating: $0) }
-//        var keyObject = taycan_object(size: key.data.count, data: keyPointer)
-
-        let keyObject = Object(dataConvertible: key)
-
-//        let valuePointer = value.data.withUnsafeBytes { UnsafeMutableRawPointer(mutating: $0) }
-//        var valueObject = taycan_object(size: value.data.count, data: valuePointer)
-        let valueObject = Object(dataConvertible: value)
-
         var putStatus: Int32 = 0
 
-        try Transaction(environment: environment) { transaction -> Transaction.Action in
-            putStatus = taycan_database_put_value(transaction.handle, id, keyObject.pointer, valueObject.pointer, UInt32(flags.rawValue))
-            return .commit
+        try key.data.withUnsafePointer { pointer -> UnsafeRawPointer? in
+            let keyPointer = UnsafeRawPointer(pointer)
+            try value.data.withUnsafePointer { pointer -> UnsafeRawPointer in
+                let valuePointer = UnsafeRawPointer(pointer)
+
+                try Transaction(environment: environment) { transaction -> Transaction.Action in
+                    putStatus = taycan_database_put_value(transaction.handle, id, keyPointer, key.data.count, valuePointer, value.data.count, UInt32(flags.rawValue))
+                    return .commit
+                }
+
+                return valuePointer
+            }
+            return keyPointer
         }
 
         guard putStatus == 0 else { throw TaycanError(returnCode: putStatus) }
@@ -104,15 +106,15 @@ extension Database {
     /// - throws: an error if operation fails. See `TaycanError`.
     public func deleteValue<K: DataConvertible>(forKey key: K) throws {
 
-//        let keyPointer = key.data.withUnsafeBytes { UnsafeMutableRawPointer(mutating: $0) }
-//        var keyObject = taycan_object(size: key.data.count, data: keyPointer)
+        try key.data.withUnsafePointer { pointer -> UnsafeRawPointer in
+            let keyPointer = UnsafeRawPointer(pointer)
 
-        let keyObject = Object(dataConvertible: key)
+            try Transaction(environment: environment) { transaction -> Transaction.Action in
+                taycan_database_delete_value(transaction.handle, id, keyPointer, key.data.count)
+                return .commit
+            }
 
-        try Transaction(environment: environment) { transaction -> Transaction.Action in
-
-            taycan_database_delete_value(transaction.handle, id, keyObject.pointer)
-            return .commit
+            return keyPointer
         }
     }
 

@@ -36,9 +36,7 @@ public class Transaction {
                 taycan_transaction_abort(handle)
             case .commit:
                 let commitStatus = taycan_transaction_commit(handle)
-                guard commitStatus == 0 else {
-                    throw TaycanError(returnCode: commitStatus)
-                }
+                guard commitStatus == 0 else { throw TaycanError(returnCode: commitStatus) }
             }
         } catch {
             taycan_transaction_abort(handle)

@@ -12,9 +12,12 @@ import Taycan
 class ViewController: UIViewController {
 
     private lazy var environment = { () -> Environment? in
-        guard let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.absoluteString else { return nil }
+//        guard let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.absoluteString else { return nil }
+        guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return nil }
         do {
-            return try Environment(path: documentPath + "lmdb.taycan")
+            let path = documentPath + "/lmdb.taycan"
+            if (!FileManager.default.fileExists(atPath: path)) { try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true) }
+            return try Environment(path: path)
         } catch let error {
             return nil
         }
@@ -22,9 +25,9 @@ class ViewController: UIViewController {
 
     private lazy var db = { () -> Database? in
         do {
-            let db = try self.environment?.openDatabase(named: "default")
+            let db = try self.environment?.openDatabase(named: "default", flags: [.create])
             return db
-        } catch {
+        } catch let error {
             return nil
         }
     }()
@@ -57,12 +60,12 @@ class ViewController: UIViewController {
 extension ViewController {
     @objc
     private func putButtonAction(button: UIButton) {
-        try? self.db?.put(value: "123", forKey: 123)
+        try? self.db?.put(value: "777", forKey: "555")
     }
 
     @objc
     private func getButtonAction(button: UIButton) {
-        let result = (try? self.db?.get(type: String.self, forKey: 123)) ?? ""
+        let result = (try? self.db?.get(type: String.self, forKey: "555")) ?? "value is nil"
         print(result)
     }
 }

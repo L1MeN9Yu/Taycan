@@ -31,7 +31,7 @@ const int TAYCAN_BAD_TXN = MDB_BAD_TXN;
 const int TAYCAN_BAD_VALSIZE = MDB_BAD_VALSIZE;
 const int TAYCAN_BAD_DBI = MDB_BAD_DBI;
 
-// Environment Flags
+// Environment/Database Flags
 const int TAYCAN_FIXEDMAP = MDB_FIXEDMAP;
 const int TAYCAN_NOSUBDIR = MDB_NOSUBDIR;
 const int TAYCAN_NOSYNC = MDB_NOSYNC;
