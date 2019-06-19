@@ -12,9 +12,30 @@
 
 #include <stdio.h>
 
+// Info
+/**
+ * 获取内部版本信息
+ * @return 版本信息
+ */
+const char *taycan_internal_version_info(void);
+
 // Environment
+/**
+ * 创建 Environment
+ * @attention environment外部持有
+ * @param environment 创建好的environment
+ * @return result
+ */
 int taycan_environment_create(void **environment);
 
+/**
+ * 打开 Environment
+ * @param environment Environment
+ * @param path 路径
+ * @param flags 配置选项
+ * @param mode_type 文件权限
+ * @return result
+ */
 int taycan_environment_open(const void *environment, const char *path, unsigned int flags, mode_t mode_type);
 
 int taycan_environment_set_map_size(const void *environment, size_t map_size);

@@ -23,6 +23,7 @@
 		B2D2A4647C7E5D20456351D5 /* DataConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A6C1E23D4C4BAEC04FB3 /* DataConvertible.swift */; };
 		B2D2A558DAAF39276CCF602C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A91793DE8DF7DE158BA9 /* Database.swift */; };
 		B2D2A5B04BACE47EEE8CA9E2 /* TaycanError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AE9221839DEFEC2E8544 /* TaycanError.swift */; };
+		B2D2A6259D44B705B0E8657F /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2A0AA53A12A758409F9A1 /* Info.swift */; };
 		B2D2A6499458105DB2E82022 /* taycan_core.h in Headers */ = {isa = PBXBuildFile; fileRef = B2D2A103FF7812EF021561C7 /* taycan_core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2D2A72C64C01CEE8A98ED7A /* Database.Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AEAB6AA006AF44E06EA7 /* Database.Flags.swift */; };
 		B2D2A924DA3F85B941CFABBE /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D2AE018B532BD63E06DDE6 /* Transaction.swift */; };
@@ -70,6 +71,7 @@
 		107F53AD22AFDF5800249095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		107F53AF22AFDF5800249095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2D2A066A38498ABC0E9BDA3 /* Environment.Flags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.Flags.swift; sourceTree = "<group>"; };
+		B2D2A0AA53A12A758409F9A1 /* Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		B2D2A103FF7812EF021561C7 /* taycan_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taycan_core.h; sourceTree = "<group>"; };
 		B2D2A1B0D853E3B14C7F8F6A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		B2D2A4AA9C3389D5B3A97625 /* taycan_core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = taycan_core.c; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				B2D2AC53DCB17A13EA70A003 /* Database */,
 				B2D2A2529AD5BF70677B853E /* Transaction */,
 				B2D2AC599A0258DAEE1F61C6 /* Extension */,
+				B2D2A89A02025B0ED5E83B5B /* Info */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -178,6 +181,14 @@
 				B2D2AB7313EABAC928512FF4 /* Transaction.Flags.swift */,
 			);
 			path = Transaction;
+			sourceTree = "<group>";
+		};
+		B2D2A89A02025B0ED5E83B5B /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				B2D2A0AA53A12A758409F9A1 /* Info.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		B2D2A8D87CD46B6B945E7040 /* Environment */ = {
@@ -362,6 +373,7 @@
 				B2D2AFFC75A77EF01F903CD7 /* Transaction.Action.swift in Sources */,
 				B2D2ABB48FA63E14219456F8 /* Transaction.Flags.swift in Sources */,
 				B2D2AF235BBDF9015DD7ACF9 /* Data.RawPointer.swift in Sources */,
+				B2D2A6259D44B705B0E8657F /* Info.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

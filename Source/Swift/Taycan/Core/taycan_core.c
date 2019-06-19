@@ -12,6 +12,13 @@
 
 #include "taycan_core.h"
 
+// Info
+
+const char *taycan_internal_version_info(void) {
+    const char *version_info = MDB_VERSION_STRING;
+    return version_info;
+}
+
 // Environment
 int taycan_environment_create(void **environment) {
     MDB_env *env;

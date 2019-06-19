@@ -18,4 +18,4 @@ FOUNDATION_EXPORT const unsigned char TaycanVersionString[];
 
 
 #import <Taycan/taycan_core.h>
-#import "taycan_core_consts.h"
+#import <Taycan/taycan_core_consts.h>

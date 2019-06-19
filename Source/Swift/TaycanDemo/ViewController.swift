@@ -12,7 +12,6 @@ import Taycan
 class ViewController: UIViewController {
 
     private lazy var environment = { () -> Environment? in
-//        guard let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.absoluteString else { return nil }
         guard let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return nil }
         do {
             let path = documentPath + "/lmdb.taycan"
@@ -54,6 +53,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setupUI()
+
+        print(Info.versionInfo)
     }
 }
 
